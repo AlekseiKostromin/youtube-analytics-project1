@@ -5,8 +5,8 @@ from googleapiclient.discovery import build
 
 class Channel:
     """Класс для ютуб-канала"""
-    # API_KEY_YOUTUBE скопирован из гугла и вставлен в переменные окружения
-    api_key: str = os.getenv('API_KEY_YOUTUBE')
+
+    api_key: str = os.getenv('API_KEY_YOUTUBE') # API_KEY_YOUTUBE скопирован из гугла и вставлен в переменные окружения
 
     @classmethod
     def get_service(cls):
