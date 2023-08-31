@@ -5,8 +5,8 @@ from googleapiclient.discovery import build
 
 class Channel:
     """Класс для ютуб-канала"""
-
-    api_key: str = os.getenv('API_KEY_YOUTUBE') # API_KEY_YOUTUBE скопирован из гугла и вставлен в переменные окружения
+    # API_KEY_YOUTUBE скопирован из гугла и вставлен в переменные окружения
+    api_key: str = os.getenv('API_KEY_YOUTUBE')
 
     @classmethod
     def get_service(cls):
@@ -26,6 +26,34 @@ class Channel:
         self.subscriber_count: int = int(self.channel_response['items'][0]['statistics']['subscriberCount'])
         self.video_count: int = int(self.channel_response['items'][0]['statistics']['videoCount'])
         self.view_count: int = int(self.channel_response['items'][0]['statistics']['viewCount'])
+
+    def __str__(self):
+        """Отображает информацию класса для пользователя."""
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """Сложение классов"""
+        return self.view_count + other.view_count
+
+    def __sub__(self, other):
+        """Вычитание классов"""
+        return self.view_count - other.view_count
+
+    def __gt__(self, other):
+        """Сравнение классов"""
+        return self.view_count > other.view_count
+
+    def __ge__(self, other):
+        """Сравнение классов"""
+        return self.view_count >= other.view_count
+
+    def __lt__(self, other):
+        """Сравнение классов"""
+        return self.view_count < other.view_count
+
+    def __le__(self, other):
+        """Сравнение классов"""
+        return self.view_count <= other.view_count
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
