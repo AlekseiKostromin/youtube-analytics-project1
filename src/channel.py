@@ -33,27 +33,27 @@ class Channel:
 
     def __add__(self, other):
         """Сложение классов"""
-        return self.view_count + other.view_count
+        return self.subscriber_count + other.subscriber_count
 
     def __sub__(self, other):
         """Вычитание классов"""
-        return self.view_count - other.view_count
+        return self.subscriber_count - other.subscriber_count
 
     def __gt__(self, other):
         """Сравнение классов"""
-        return self.view_count > other.view_count
+        return self.subscriber_count > other.subscriber_count
 
     def __ge__(self, other):
         """Сравнение классов"""
-        return self.view_count >= other.view_count
+        return self.subscriber_count >= other.subscriber_count
 
     def __lt__(self, other):
         """Сравнение классов"""
-        return self.view_count < other.view_count
+        return self.subscriber_count < other.subscriber_count
 
     def __le__(self, other):
         """Сравнение классов"""
-        return self.view_count <= other.view_count
+        return self.subscriber_count <= other.subscriber_count
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
