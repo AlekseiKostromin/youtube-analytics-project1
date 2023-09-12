@@ -46,4 +46,3 @@ class PlayList(MixinBase):
                 max_likes = count_likes
                 video_id = video['id']
         return f'https://youtu.be/{video_id}'
-
