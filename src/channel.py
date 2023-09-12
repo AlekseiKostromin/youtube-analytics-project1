@@ -1,17 +1,9 @@
 import json
-import os
-from googleapiclient.discovery import build
+from src.baseclass import MixinBase
 
 
-class Channel:
+class Channel(MixinBase):
     """Класс для ютуб-канала"""
-    # API_KEY_YOUTUBE скопирован из гугла и вставлен в переменные окружения
-    api_key: str = os.getenv('API_KEY_YOUTUBE')
-
-    @classmethod
-    def get_service(cls):
-        """Возвращает объект для работы с YouTube API"""
-        return build('youtube', 'v3', developerKey=cls.api_key)
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
@@ -28,31 +20,31 @@ class Channel:
         self.view_count: int = int(self.channel_response['items'][0]['statistics']['viewCount'])
 
     def __str__(self):
-        """Отображает информацию класса для пользователя."""
+        """отображение информации об объекте класса для пользователей"""
         return f"{self.title} ({self.url})"
 
     def __add__(self, other):
-        """Сложение классов"""
+        """сложение классов"""
         return self.subscriber_count + other.subscriber_count
 
     def __sub__(self, other):
-        """Вычитание классов"""
+        """вычитание классов"""
         return self.subscriber_count - other.subscriber_count
 
     def __gt__(self, other):
-        """Сравнение классов"""
+        """Сравнение классов 'больше'"""
         return self.subscriber_count > other.subscriber_count
 
     def __ge__(self, other):
-        """Сравнение классов"""
+        """Сравнение классов 'больше или равно'"""
         return self.subscriber_count >= other.subscriber_count
 
     def __lt__(self, other):
-        """Сравнение классов"""
+        """Сравнение классов 'меньше'"""
         return self.subscriber_count < other.subscriber_count
 
     def __le__(self, other):
-        """Сравнение классов"""
+        """Сравнение классов 'меньше или равно'"""
         return self.subscriber_count <= other.subscriber_count
 
     def print_info(self) -> None:
